@@ -40,27 +40,27 @@ const PersonalSkills = () => {
         </p>
 
         <button className="
-    mt-8 
-    bg-[#e93f00] text-white 
-    
-    /* 1. FONT SIZE: text-sm sa mobile para hindi 'loud', text-base sa desktop */
-    text-sm lg:text-base 
-    font-bold uppercase tracking-widest
-    
-    /* 2. PADDING: py-3/px-6 (sakto lang sa mobile) -> py-4/px-10 (desktop) */
-    py-3 lg:py-4 
-    px-6 lg:px-10 
-    
-    /* 3. WIDTH: Full sa mobile (standard UX), auto sa desktop */
-    w-full sm:w-auto
-    
-    rounded-full 
-    hover:bg-[#c73600] 
-    transition-all 
-    shadow-lg hover:shadow-orange-600/40
-">
-    View Projects
-</button>
+            mt-8 
+            bg-[#e93f00] text-white 
+            
+            /* 1. FONT SIZE: text-sm sa mobile para hindi 'loud', text-base sa desktop */
+            text-sm lg:text-base 
+            font-bold uppercase tracking-widest
+            
+            /* 2. PADDING: py-3/px-6 (sakto lang sa mobile) -> py-4/px-10 (desktop) */
+            py-3 lg:py-4 
+            px-6 lg:px-10 
+            
+            /* 3. WIDTH: Full sa mobile (standard UX), auto sa desktop */
+            w-full sm:w-auto
+            
+            rounded-full 
+            hover:bg-[#c73600] 
+            transition-all 
+            shadow-lg hover:shadow-orange-600/40
+        ">
+            View Projects
+        </button>
       </div>
 
 {/* RIGHT ORANGE BAR */}
