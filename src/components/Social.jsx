@@ -7,7 +7,7 @@ const SocialIcons = () => {
        2. Ginamit ang 'gap-6' imbes na 'space-y-4' para sa mas modernong spacing.
        3. 'items-center' para laging tapat-tapat ang icons vertically.
     */
-    <div className="absolute top-1/4 -translate-y-1/2 left-8 flex flex-col items-center gap-6 z-50">
+    <div className="absolute top-1/6 -translate-y-1/2 left-8 flex flex-col items-center gap-6 z-50">
       
       {/* Ginamit ang 'group' class para mas madaling i-style ang hover effects */}
       <SocialLink href="#" icon={<FaFacebook />} />

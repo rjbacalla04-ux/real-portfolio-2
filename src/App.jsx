@@ -1,6 +1,6 @@
 import Logo from './components/Logo.jsx';
 import Navbar from './components/Navbar.jsx';
-import HeroContent from './components/HeroContent.jsx';
+import HeroContent from './Pages/HeroContent.jsx';
 import SocialIcon from './components/Social.jsx';
 import AboutSection from './Pages/AboutSection.jsx';
 import PortfolioSection from './Pages/PortfolioSection.jsx';
