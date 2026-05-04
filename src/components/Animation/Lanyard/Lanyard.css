@@ -1,0 +1,31 @@
+/* Lanyard.css */
+.lanyard-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* Mahalaga: para ma-click mo yung text sa likod */
+  z-index: 50;
+}
+
+.lanyard-wrapper canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  pointer-events: auto; /* Dito lang pwede ang drag */
+  touch-action: none;
+}
+
+
+
+@media (max-width: 768px) {
+  .lanyard-wrapper {
+    align-items: flex-start; 
+    padding-top: 50px;
+    height: 80vh; /* Para hindi kainin ang buong mobile screen */
+  }
+}
+
+
+

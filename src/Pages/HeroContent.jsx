@@ -1,76 +1,79 @@
 import React from 'react';
-import Logo from '../components/Logo';
+import Logo from '../components/Logo';// Siguraduhin na tama ang path
 import TextType from '../components/Animation/TextType/TextType';
+import Lanyard from '../components/Animation/Lanyard/Lanyard';
+
 
 const HeroContent = () => {
     return (
-        /* 1. Ginamit ang 'relative' para sumama sa scroll.
-           2. 'min-h-screen' para sakop ang buong screen sa start.
-           3. 'z-10' para sigurado tayong nasa tamang layer.
-        */
-        <section className="relative w-full min-h-screen flex items-center justify-center lg:justify-between px-6 md:px-20 overflow-hidden bg-white z-10">
-            
-            {/* LEFT SIDE: Hero Content */}
-            <div className="flex-1 z-20 
-                /* Binago: Responsive Margin: Gumagalaw depende sa screen size */
-                lg:ml-[8vw] 
-                /* Binago: Nagdagdag ng max-w para hindi 'sumabog' ang text sa sobrang laking monitor at hindi 'bumaba' sa maliliit */
-                max-w-[1400px] 
-                flex flex-col items-center lg:items-start text-center lg:text-left">
+        <section className="relative w-full min-h-[100svh] flex items-center bg-white overflow-hidden z-10 px-6 md:px-12 lg:px-20">
+            {/* 3D Background Element */}
+            <div className="hidden lg:block">
+                <Lanyard position={[0, 0, 10]}/>
+            </div>  
+            <div className="w-full max-w-7xl mx-auto flex items-center">
                 
-                {/* FLUID TYPOGRAPHY: 
-                   - text-4xl (Mobile)
-                   - md:text-6xl (Tablet)
-                   - clamp (Desktop) -> mag-aadjust sa monitor nang kusa.
-                */}
-                <h1 className="font-poppins text-[#02373A] tracking-tight max-w-[1000px]
-                            text-4xl md:text-6xl 
-                            lg:text-[clamp(3rem,4.5vw,4rem)]
-                            /* Pinakadikit na line-height */
-                            leading-none md:leading-tight lg:leading-[1.5]">
-        
-                    {/* Binabaan ang min-h para hindi 'itulak' pababa yung nasa ilalim */}
-                    <div className="min-h-[0.9em] flex items-center justify-center lg:justify-start">
-                        <TextType 
-                            text={["I'm a Web Developer", "Turning ideas into reality"]}
-                            typingSpeed={75}
-                            pauseDuration={5000}
-                            showCursor
-                            cursorCharacter="_"
-                            deletingSpeed={50}
-                        />
+                {/* LEFT SIDE CONTENT */}
+                <div className="relative z-20 w-full lg:w-auto flex flex-col items-center lg:items-start gap-y-4 lg:pl-[27%]">
+                    
+                    <h1 className="font-poppins text-[#02373A] tracking-tight
+                        text-4xl sm:text-5xl md:text-6xl 
+                        lg:text-[clamp(2.5rem,3.2vw,3.5rem)]
+                        leading-tight lg:leading-[1.2]
+                        text-center lg:text-left">
+
+                        <div className="min-h-[1.2em] flex items-center justify-center lg:justify-start">
+                            <TextType 
+                                text={["I'm a Web Developer", "Make great ideas real"]}
+                                typingSpeed={75}
+                                pauseDuration={5000}
+                                showCursor
+                                cursorCharacter="_"
+                                deletingSpeed={50}
+                            />
+                        </div>
+
+                        <span className="block mt-2 font-bold">RJ L. Bacalla</span>
+                    </h1>
+                    
+                    <p className="mt-2 font-poppins text-slate-600 leading-relaxed max-w-md
+                        text-sm sm:text-base md:text-[clamp(1rem,1.1vw,1.125rem)]
+                        text-center lg:text-left">
+                        I am eager to contribute, learn from a team, and create meaningful digital solutions.
+                    </p>
+
+                    <div className="w-full flex justify-center lg:justify-start">
+                        <button
+                            aria-label="Learn more about RJ Bacalla"
+                            className="mt-6 px-8 py-3 bg-[#e93f00] text-white font-semibold rounded-full 
+                            hover:bg-[#c73600] transition-all duration-300 shadow-lg hover:shadow-[#e93f00]/30 
+                            uppercase tracking-wider w-full sm:w-fit text-sm md:text-base"
+                        >
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+
+                {/* RIGHT SIDE LOGO (Simplified Positioning) */}
+                <div className="absolute inset-0 z-0 pointer-events-none overflow">
+                    <div className="absolute -bottom-20 -right-20 lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-[22%] w-full lg:w-[1100px] opacity-50 lg:opacity-80 z-0 pointer-events-none">
+                        <Logo />
+                    </div>
+                    
+                    <div className="absolute bottom-0 left-[60%] z-0 
+                                    w-[80%] lg:w-[clamp(600px,50vw,900px)] 
+                                    -translate-x-1/4 translate-y-1/4 
+                                    opacity-20 lg:opacity-40 
+                                    pointer-events-none select-none">
+                        <Logo />
                     </div>
 
-                        {/* Tinanggal ang <br /> dahil kumakain ito ng space */}
-                        
-                        {/* Gumamit ng negative margin sa desktop (-mt-4) para hilahin pataas */}
-                        <span className="block mt-1 lg:-mt-4 font-bold">
-                            RJ L. Bacalla
-                        </span>
-                </h1>
+                </div>
+
                 
-                {/* Responsive Paragraph: text-sm sa mobile, hindi lalampas sa text-lg sa desktop */}
-                <p className="mt-8 font-poppins text-slate-600 leading-relaxed max-w-lg
-                    text-sm sm:text-base md:text-[clamp(1rem,1.1vw,1.125rem)]">
-                    I am eager to contribute, learn from a team, and create meaningful 
-                    digital solutions. This portfolio showcases my work, progress, and 
-                    commitment to growth.
-                </p>
 
-                {/* Button: w-full sa mobile but max-w-xs, auto width sa desktop */}
-                <button className="
-                    mt-10 px-10 py-3 bg-[#e93f00] text-white font-semibold rounded-full 
-                    hover:bg-[#c73600] transition-all shadow-lg hover:shadow-[#e93f00]/30 
-                    uppercase tracking-wider w-full sm:w-auto
-                    text-sm lg:text-base
-                ">
-                    Learn More
-                </button>
+                
             </div>
-
-            {/* Logo Component: Siguraduhing ito ay absolute sa loob ng section */}
-            <Logo />
-            
         </section>
     );
 };

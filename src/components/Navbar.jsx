@@ -2,69 +2,56 @@ import React, { useState, useEffect } from "react";
 
 const Navbar = () => {
   const [active, setActive] = useState(null);
-
   const sections = ["home", "about", "portfolio", "contact"];
 
   useEffect(() => {
     const observers = [];
-
     sections.forEach((sec) => {
       const element = document.getElementById(sec);
-
       if (!element) return;
 
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
-            if (sec === "home") {
-              setActive(null);
-            } else {
-              setActive(sec);
-            }
+            setActive(sec === "home" ? "home" : sec); // Mas okay kung "home" din ang active value kesa null para lumabas yung line
           }
         },
-        {
-          threshold: 0.6, // gaano kalaki dapat visible bago ma-detect
-        }
+        { threshold: 0.6 }
       );
 
       observer.observe(element);
       observers.push(observer);
     });
 
-    return () => {
-      observers.forEach((observer) => observer.disconnect());
-    };
-  }, );
+    return () => observers.forEach((obs) => obs.disconnect());
+  }, []);
 
   const handleClick = (sectionId) => {
-    document.getElementById(sectionId)?.scrollIntoView({
-      behavior: "smooth",
-    });
-
-    if (sectionId === "home") {
-      setActive(null);
-    } else {
-      setActive(sectionId);
-    }
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    setActive(sectionId);
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50">
+    <nav className="fixed top-0 left-0 w-full z-50"> {/* Added blur para readable */}
       <div className="max-w-7xl mx-auto px-4">
-        <ul className="flex justify-center space-x-10 py-4 font-poppins text-[14px] tracking-widest">
+        <ul className="flex justify-center space-x-10 py-4 font-poppins text-[14px] tracking-widest uppercase">
           {sections.map((sec) => (
-            <li key={sec}>
+            <li key={sec} className="relative group">
               <button
                 onClick={() => handleClick(sec)}
-                className={`hover:text-blue-600 ${
-                  active === sec
-                    ? "text-blue-600 font-bold"
-                    : "text-gray-800"
+                className={`transition-colors duration-300 capitalize ${
+                  active === sec ? "text-[#e93f00] font-bold" : "text-gray-800 hover:text-[#e93f00]"
                 }`}
               >
-                {sec.charAt(0).toUpperCase() + sec.slice(1)}
+                {sec}
               </button>
+
+              {/* HETO YUNG ORANGE LINE */}
+              <span
+                className={`absolute -bottom-1 left-0 h-[2px] bg-[#e93f00] transition-all duration-300 ${
+                  active === sec ? "w-full" : "w-0 group-hover:w-full"
+                }`}
+              />
             </li>
           ))}
         </ul>

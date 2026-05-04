@@ -1,98 +1,138 @@
-import ReactIcon from '../assets/photos/react.png';
-import HtmlIcon from '../assets/photos/html.png';
-import CssIcon from '../assets/photos/css-3.png';
-import GithubIcon from '../assets/photos/github.png';
-import NodejsIcon from '../assets/photos/nodejs.png';
+import React, { useState, useEffect } from 'react'
+import LogoLoop from '@/components/Animation/LogoLoop/LogoLoop'
+import TiltedCard from '../components/Animation/Tilted/TiltedCard';
+
+// Mga Images mo sa assets
+import skill1 from '../assets/photos/skills1.jpg';
+import skill2 from '../assets/photos/skill2.jpg';
+
+import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss } from 'react-icons/si';
+
+const techLogos = [
+  { node: <SiReact />, title: "React", href: "https://react.dev" },
+  { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
+  { node: <SiTypescript />, title: "TypeScript", href: "https://www.typescriptlang.org" },
+  { node: <SiTailwindcss />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
+];
 
 const PersonalSkills = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkSize = () => setIsMobile(window.innerWidth < 1024);
+    checkSize(); 
+    window.addEventListener('resize', checkSize);
+    return () => window.removeEventListener('resize', checkSize);
+  }, []);
+
+  // Responsive sizes: 160px sa mobile para magkasya yung dalawang card magkatabi
+  const cardSize = isMobile ? "160px" : "450px";
+
   return (
     <section
       id="about"
-      // Change: flex-col for mobile, items-center/start for alignment
-      className="min-h-screen flex flex-col lg:flex-row bg-gray-100 relative overflow-hidden"
+      /* h-auto sa mobile para mag-scroll, lg:min-h-screen sa desktop */
+      className="h-auto flex flex-col justify-start bg-gray-100 overflow-x-hidden relative lg:pb-20"
     >
-      {/* LEFT SIDE - CONTENT */}
-      <div className="flex-1 px-6 py-16 lg:px-12 lg:py-35 z-10">
-        <h1 className="text-6xl md:text-8xl lg:text-[190px] font-bold text-gray-500 tracking-[-0.1em] font-aileron leading-[0.8] lg:leading-[0.75]">
-          <span className="block">My</span>
-          <span className="block">Personal Skills</span>
-        </h1>
+      
+      {/* --- 🟢 MAIN CONTENT AREA --- */}
+      <div className="flex-1 flex flex-col lg:flex-row px-6 pt-12 lg:px-12 lg:pt-20 z-10 relative">
 
-        <p className="font-aileron text-base md:text-[17px] mt-6 font-poppins max-w-xl text-gray-800">
-          I started my journey in tech as an IT Assistant, where I developed an
-          interest in web development. Over time, I learned the fundamentals of
-          HTML, CSS, and JavaScript, and I am now focusing on building projects
-          using React.
-        </p>
+        {/* LEFT SIDE: Heading & Text */}
+        <div className="flex-1">
+          <h1 className="text-5xl md:text-8xl lg:text-[170px] font-bold text-gray-500 tracking-[-0.1em] leading-[0.8]">
+            <span className="block text-gray-400">My</span>
+            <span className="block text-gray-700">Personal Skills</span>
+          </h1>
 
-        <div className="font-aileron mt-6 text-gray-800">
-          <p className="font-semibold">Strengths:</p>
-          <ul className="list-none">
-            <li>Problem-solving mindset</li>
-            <li>Fast learner</li>
-            <li>Attention to detail</li>
-          </ul>
+          <div className="mt-8 space-y-5 max-w-xl text-gray-800">
+            <p className="font-poppins text-xs md:text-sm leading-relaxed">
+              I started my journey in tech as an IT Assistant at an ISP company. 
+              This foundation helped me develop a strong grasp of technical systems and user needs.
+            </p>
+
+            <div className="border-l-4 border-[#e93f00] pl-4 py-1 bg-white/50 rounded-r-md">
+              <p className="font-bold uppercase tracking-wider text-lg md:text-xl text-[#e93f00] mb-1">Strengths:</p>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 text-xs md:text-sm font-medium">
+                <li>• Problem-solving mindset</li>
+                <li>• Fast learner</li>
+                <li>• Attention to detail</li>
+                <li>• Technical Adaptability</li>
+              </ul>
+            </div>
+
+            <button className="mt-4 bg-[#e93f00] text-white text-[10px] md:text-sm font-bold uppercase tracking-widest py-3 px-8 md:py-4 md:px-10 rounded-full hover:bg-[#c73600] transition-all shadow-lg active:scale-95">
+              View Projects
+            </button>
+          </div>
         </div>
 
-        <p className="font-aileron mt-6 text-gray-800">
-          I enjoy turning ideas into functional applications and continuously
-          improving my skills.
-        </p>
+        {/* RIGHT SIDE: Cards & Key Area Block */}
+        <div className="flex-1 flex flex-col items-start z-20 mt-12 lg:mt-0">
+          
+          {/* CARDS WRAPPER (Magkatabi) */}
+          <div className="flex flex-row justify-center lg:justify-start gap-3 md:gap-10 mb-8 w-full">
+            <div className="lg:sticky lg:top-10 transform lg:-translate-x-6">
+              <TiltedCard
+                imageSrc={skill1}
+                altText="Skill Card 1"
+                containerHeight={cardSize}
+                containerWidth={cardSize}
+                imageHeight={cardSize}
+                imageWidth={cardSize}
+                rotateAmplitude={12}
+                scaleOnHover={1.05}
+                displayOverlayContent
+                overlayContent={<p className="text-[10px] text-white bg-black/40 p-1 rounded">IT Setup</p>}
+              />
+            </div>
 
-        <button className="
-            mt-8 
-            bg-[#e93f00] text-white 
-            
-            /* 1. FONT SIZE: text-sm sa mobile para hindi 'loud', text-base sa desktop */
-            text-sm lg:text-base 
-            font-bold uppercase tracking-widest
-            
-            /* 2. PADDING: py-3/px-6 (sakto lang sa mobile) -> py-4/px-10 (desktop) */
-            py-3 lg:py-4 
-            px-6 lg:px-10 
-            
-            /* 3. WIDTH: Full sa mobile (standard UX), auto sa desktop */
-            w-full sm:w-auto
-            
-            rounded-full 
-            hover:bg-[#c73600] 
-            transition-all 
-            shadow-lg hover:shadow-orange-600/40
-        ">
-            View Projects
-        </button>
+            <div className="lg:sticky lg:top-10 transform lg:-translate-x-6">
+              <TiltedCard
+                imageSrc={skill2}
+                altText="Skill Card 2"
+                containerHeight={cardSize}
+                containerWidth={cardSize}
+                imageHeight={cardSize}
+                imageWidth={cardSize}
+                rotateAmplitude={12}
+                scaleOnHover={1.05}
+                displayOverlayContent
+                overlayContent={<p className="text-[10px] text-white bg-black/40 p-1 rounded">Frontend</p>}
+              />
+            </div>
+          </div>
+
+          {/* KEY AREA BLOCK */}
+          <div className="border-l-4 border-[#e93f00] pl-4 py-4 bg-white/70 backdrop-blur-sm rounded-r-md 
+                        w-full max-w-[900px] shadow-sm mt-4 lg:mt-10">
+            <p className="font-bold uppercase tracking-wider text-lg md:text-xl text-[#e93f00] mb-2">Key Area:</p>
+            <p className="text-[11px] md:text-sm lg:text-base text-gray-700 leading-relaxed">
+              Over time, I learned the fundamentals of HTML, CSS, and JavaScript, and I am now focusing on building projects using React. Currently, I am continuously improving my skills through self-study, online resources, and hands-on practice by creating personal projects.
+              <span className="block mt-4">
+                My goal is to become a job-ready full stack developer and contribute to real-world projects where I can add value and continue growing in the field.
+              </span>
+            </p>
+          </div>
+        </div>
       </div>
 
-{/* RIGHT ORANGE BAR */}
-<div className="
-  /* Mobile Styles (Default) */
-  relative w-full bg-orange-600 flex flex-row flex-wrap justify-center items-center py-8 gap-6
-  
-  /* Desktop Styles (Large screens) */
-  lg:absolute lg:right-0 lg:top-0 lg:w-[250px] lg:h-full lg:flex-col lg:flex-nowrap lg:py-10 lg:gap-10
-">
-  {/* Html Icon */}
-  <div className="w-16 md:w-20 lg:w-32 flex justify-center">
-    <img src={HtmlIcon} alt="html" className="w-full h-auto object-contain" />
-  </div>
-
-  {/* Css Icon */}
-  <div className="w-16 md:w-20 lg:w-32 flex justify-center">
-    <img src={CssIcon} alt="css" className="w-full h-auto object-contain" />
-  </div>
-
-  {/* Nodejs Icon */}
-  <div className="w-16 md:w-20 lg:w-32 flex justify-center">
-    <img src={NodejsIcon} alt="nodejs" className="w-full h-auto object-contain" />
-  </div>
-
-  {/* Github Icon */}
-  <div className="w-16 md:w-20 lg:w-32 flex justify-center">
-    <img src={GithubIcon} alt="github" className="w-full h-auto object-contain" />
-  </div>
-</div>
+      {/* --- 🔵 FOOTER LOGO LOOP --- */}
+      <div className="w-full py-8 lg:py-12 z-30 mt-10 relative lg:-top-10">
+        <LogoLoop
+          logos={techLogos}
+          speed={100}
+          direction="left"
+          logoHeight={isMobile ? 35 : 50}
+          gap={isMobile ? 40 : 80}
+          scaleOnHover
+          fadeOut
+          fadeOutColor="#f3f4f6"
+        />
+      </div>
+      
     </section>
-  );
-};
+  )
+}
 
 export default PersonalSkills;

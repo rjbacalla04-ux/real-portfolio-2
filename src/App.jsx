@@ -5,6 +5,8 @@ import SocialIcon from './components/Social.jsx';
 import AboutSection from './Pages/AboutSection.jsx';
 import PortfolioSection from './Pages/PortfolioSection.jsx';
 import ContactSection from './Pages/ContactSection.jsx';
+import Lanyard from './components/Animation/Lanyard/Lanyard.jsx';
+
 
 function App() {
   return (
